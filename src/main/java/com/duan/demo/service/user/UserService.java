@@ -48,4 +48,15 @@ public class UserService implements IUserService {
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
+
+    @Override
+    public boolean checkUser(String username) {
+        return userRepository.findByUsername(username) != null;
+
+    }
+
+    @Override
+    public boolean checkPassword(String username, String password) {
+        return false;
+    }
 }
