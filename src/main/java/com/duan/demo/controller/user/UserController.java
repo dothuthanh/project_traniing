@@ -41,4 +41,21 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @PutMapping("/resetPassword/{username}")
+    public ResponseEntity<User> resetPassword(@PathVariable("username") String username , @RequestBody String password ) {
+        User userFind = iUserService.findByUsername(username);
+        userFind.setPassword(passwordEncoder.encode(password));
+        iUserService.save(userFind);
+        return new ResponseEntity<>(HttpStatus.OK);
+
+    }
+    @PostMapping("/resetPassword")
+    public ResponseEntity<Boolean> checkPassword(@RequestBody User user) {
+        User userFind = iUserService.findByUsername(user.getUsername());
+        userFind.setComfirmPassword(passwordEncoder.encode(user.getComfirmPassword()));
+        iUserService.save(userFind);
+        boolean isMatched = iUserService.checkPassword(user.getUsername(), user.getComfirmPassword());
+        return new ResponseEntity<>(isMatched, HttpStatus.OK);
+    }
+
 }

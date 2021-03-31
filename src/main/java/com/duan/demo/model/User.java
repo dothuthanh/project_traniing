@@ -26,6 +26,7 @@ public class User {
 //    @NotEmpty(message = "Please enter password")
 //    @Size(min = 6, max = 20, message = "Password length from 6 to 20 characters")
     private String password;
+    private String comfirmPassword;
 //
 //    @NotEmpty(message = "please enter Full Name")
 //    @Size(min = 2, max = 20, message = "Full Name length from 2 to 20 characters")
